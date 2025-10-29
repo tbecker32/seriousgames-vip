@@ -102,7 +102,7 @@ label grocery_round(round_index):
     show screen grocery_round(round_data)
     
     menu:
-        "Next":
+        "Whats Next??":
             hide screen grocery_round
             
             # Process selections
