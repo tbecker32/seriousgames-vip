@@ -53,6 +53,7 @@ default current_energy = "low_energy"
 default stress = 5
 default health = 5
 default energy = 5
+default ghealth = 0
 
 define inventory_open = False
 
@@ -146,6 +147,7 @@ image question1 = "images/question.png"
 image question2 = "images/question.png"
 image question3 = "images/question.png"
 
+
 ### BEGINNING SCENARIO
 
 label start:
@@ -184,6 +186,7 @@ label intro1:
 
     show buzz cousin
     cousin "Oh right… that… well I'm glad they were able to save her toe at least."
+    jump game_grocerydash
     player "Can't say the same for Regina…"
     cousin "Oh don't tell me you're on her side for this!"
     player "I'm not saying anything!! *Laughs* Give me a second here, I need to use the restroom."
@@ -1055,7 +1058,9 @@ screen hud():
         has vbox
 
         text "💰 Money: [money]" size 30
-        text "❤️ Health: [health]" size 30 
+        text "❤️ Health: [ghealth]" size 30 
+
+
 
 
 
@@ -1074,350 +1079,18 @@ label game_grocerydash:
     # Run each grocery round (defined in grocery_rounds.rpy)
     $ current_round = 0
     while current_round < len(grocery_rounds):
-        call grocery_round(current_round)
+        call grocery_round(current_round) # code is all in grocery_rounds.py
         $ current_round += 1
 
+    $ health += (ghealth // 18)
+    $ energy += 1
+    $ stress -= 1
+    """
+    Great shopping! You managed to get a good balance of healthy foods and treats. You feel energized and less stressed, knowing you shopped well within your budget.
+    Your choices gained you [ghealth] health points!
+    """
     hide screen hud
     jump level3part3
-        
-
-
-
-screen round1():
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food1_selected", not food1_selected)
-        xpos 0.1
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food1_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food2_selected", not food2_selected)
-        xpos 0.25
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food2_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food3_selected", not food3_selected)
-        xpos 0.4
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food3_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food4_selected", not food4_selected)
-        xpos 0.55
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food4_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food5_selected", not food5_selected)
-        xpos 0.70
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food5_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food6_selected", not food6_selected)
-        xpos 0.15
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food6_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food7_selected", not food7_selected)
-        xpos 0.30
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food7_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food8_selected", not food8_selected)
-        xpos 0.45
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food8_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food9_selected", not food9_selected)
-        xpos 0.60
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food9_selected)
-
-screen round2():
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food1_selected", not food1_selected)
-        xpos 0.1
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food1_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food2_selected", not food2_selected)
-        xpos 0.25
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food2_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food3_selected", not food3_selected)
-        xpos 0.4
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food3_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food4_selected", not food4_selected)
-        xpos 0.55
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food4_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food5_selected", not food5_selected)
-        xpos 0.70
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food5_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food6_selected", not food6_selected)
-        xpos 0.15
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food6_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food7_selected", not food7_selected)
-        xpos 0.30
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food7_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food8_selected", not food8_selected)
-        xpos 0.45
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food8_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food9_selected", not food9_selected)
-        xpos 0.60
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food9_selected)
-
-screen round3():
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food1_selected", not food1_selected)
-        xpos 0.1
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food1_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food2_selected", not food2_selected)
-        xpos 0.25
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food2_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food3_selected", not food3_selected)
-        xpos 0.4
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food3_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food4_selected", not food4_selected)
-        xpos 0.55
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food4_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food5_selected", not food5_selected)
-        xpos 0.70
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food5_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food6_selected", not food6_selected)
-        xpos 0.15
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food6_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food7_selected", not food7_selected)
-        xpos 0.30
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food7_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food8_selected", not food8_selected)
-        xpos 0.45
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food8_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food9_selected", not food9_selected)
-        xpos 0.60
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food9_selected)
-
-screen round4():
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food1_selected", not food1_selected)
-        xpos 0.1
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food1_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food2_selected", not food2_selected)
-        xpos 0.25
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food2_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food3_selected", not food3_selected)
-        xpos 0.4
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food3_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food4_selected", not food4_selected)
-        xpos 0.55
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food4_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food5_selected", not food5_selected)
-        xpos 0.70
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food5_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food6_selected", not food6_selected)
-        xpos 0.15
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food6_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food7_selected", not food7_selected)
-        xpos 0.30
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food7_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food8_selected", not food8_selected)
-        xpos 0.45
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food8_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food9_selected", not food9_selected)
-        xpos 0.60
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food9_selected)
-
-screen round5():
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food1_selected", not food1_selected)
-        xpos 0.1
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food1_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food2_selected", not food2_selected)
-        xpos 0.25
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food2_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food3_selected", not food3_selected)
-        xpos 0.4
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food3_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food4_selected", not food4_selected)
-        xpos 0.55
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food4_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food5_selected", not food5_selected)
-        xpos 0.70
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food5_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food6_selected", not food6_selected)
-        xpos 0.15
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food6_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food7_selected", not food7_selected)
-        xpos 0.30
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food7_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food8_selected", not food8_selected)
-        xpos 0.45
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food8_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food9_selected", not food9_selected)
-        xpos 0.60
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food9_selected)
-
-screen round6():
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food1_selected", not food1_selected)
-        xpos 0.1
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food1_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food2_selected", not food2_selected)
-        xpos 0.25
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food2_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food3_selected", not food3_selected)
-        xpos 0.4
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food3_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food4_selected", not food4_selected)
-        xpos 0.55
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food4_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food5_selected", not food5_selected)
-        xpos 0.70
-        ypos 0.5
-        at Transform(zoom=0.2 + 0.025 * food5_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food6_selected", not food6_selected)
-        xpos 0.15
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food6_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food7_selected", not food7_selected)
-        xpos 0.30
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food7_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food8_selected", not food8_selected)
-        xpos 0.45
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food8_selected)
-    imagebutton:
-        idle "images/question.png"
-        action SetVariable("food9_selected", not food9_selected)
-        xpos 0.60
-        ypos 0.75
-        at Transform(zoom=0.2 + 0.025 * food9_selected)
 
 
 
