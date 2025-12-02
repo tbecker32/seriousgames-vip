@@ -31,7 +31,7 @@ init python:
             {"pos": (0.15, 0.75), "image": "peach.png", "money": 3, "health": 3, "desc": "Taste the sunshine in every bite."},
             {"pos": (0.30, 0.75), "image": "strawberry.png", "money": 3, "health": 3, "desc": "Delicious and antioxidant-rich."},
             {"pos": (0.45, 0.75), "image": "blueberry.png", "money": 3, "health": 3, "desc": "A tiny, tasty health boost."},
-            {"pos": (0.60, 0.75), "image": "question.png", "money": 3, "health": 3, "desc": "Perfectly tart and sweet."}
+            {"pos": (0.60, 0.75), "image": "strawberry.png", "money": 3, "health": 3, "desc": "Perfectly tart and sweet."}
         ]
     },
     {
