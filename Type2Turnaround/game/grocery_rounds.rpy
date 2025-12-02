@@ -1,6 +1,6 @@
 default hover_text = ""
 init python:
-    renpy.show_screen("tooltip_hud")
+    # renpy.show_screen("tooltip_hud")
 
     # Define the rounds data structure
     grocery_rounds = [
@@ -68,7 +68,7 @@ init python:
         "name": "Treats",
         "description": "Almost done...only temptation aisle is left! Will you resist, or indulge? I mean, who says no to a treat?",
         "items": [
-            {"pos": (0.1, 0.5), "image": "question.png", "money": 0, "health": 4, "desc": "I say no...Willpower pays off!"},
+            {"pos": (0.1, 0.5), "image": "picknothing.png", "money": 0, "health": 4, "desc": "I say no...Willpower pays off!"},
             {"pos": (0.25, 0.5), "image": "chips2.png", "money": 2, "health": -2, "desc": "Crunchy, but think twice."},
             {"pos": (0.4, 0.5), "image": "soda.png", "money": 2, "health": -2, "desc": "Refreshing? Maybe. Healthy? Nope."},
             {"pos": (0.55, 0.5), "image": "pizza.png", "money": 6, "health": -3, "desc": "Easy dinner, health trade-off. Mabye some veggie toppings??"},
@@ -82,7 +82,7 @@ init python:
 ]
 
 
-screen tooltip_hud() zorder 2:
+screen tooltip_hud() zorder 65:
     timer 0.01 repeat True action SetScreenVariable("dummy", True)
     default dummy = False # weird dummy workaround to force screen updates
 
@@ -104,6 +104,8 @@ screen tooltip_hud() zorder 2:
 
 screen grocery_round(round_data):
     # Use a fixed container so we don't draw a framed panel over the scene
+    python:
+        renpy.show_screen("tooltip_hud")
     fixed:
         for index, item in enumerate(round_data["items"]):
             imagebutton:

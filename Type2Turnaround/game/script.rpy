@@ -179,6 +179,7 @@ label intro1:
     show screen pre_stress_display
     show screen pre_energy_display
     show screen pre_health_display
+    jump game_grocerydash
     """
     You're attending a family reunion. Chitchatting with everyone.
     """
@@ -186,7 +187,7 @@ label intro1:
 
     show buzz cousin
     cousin "Oh right… that… well I'm glad they were able to save her toe at least."
-    jump game_grocerydash
+    
     player "Can't say the same for Regina…"
     cousin "Oh don't tell me you're on her side for this!"
     player "I'm not saying anything!! *Laughs* Give me a second here, I need to use the restroom."
